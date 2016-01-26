@@ -15,6 +15,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using CathedralProjects.Models;
 using CathedralProjects.Providers;
+using CathedralProjects.Repository;
 using CathedralProjects.Results;
 
 namespace CathedralProjects.Controllers
@@ -25,6 +26,7 @@ namespace CathedralProjects.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+        private StudentRepository studentRepository;
 
         public AccountController()
         {
@@ -336,7 +338,7 @@ namespace CathedralProjects.Controllers
             {
                 return GetErrorResult(result);
             }
-
+            studentRepository = new StudentRepository(new MongoProvider("mongodb://localhost:27017","Student"));
             return Ok();
         }
 

@@ -13,11 +13,24 @@ namespace CathedralProjects.Models
     public class Student
     {
         [BsonId]
-        public string ExternalId { get; set; }
+        public Guid ExternalId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string MiddleName { get; set; }
-        public string GroupId { get; set; }
+        public string Patronomic { get; set; }
+        public Guid GroupId { get; set; }
+        public string Email { get; set; }
+        public string Github { get; set; }
 
+        public Student(Guid id, string name, string surname,
+            string patronomic, Guid gropId, string email, string GitHub)
+        {
+            this.ExternalId = id;
+            this.Name = name;
+            this.Surname = surname;
+            this.Patronomic = patronomic;
+            this.Email = email;
+            this.GroupId = gropId;
+            this.Github = GitHub;
+        }
     }
 }
