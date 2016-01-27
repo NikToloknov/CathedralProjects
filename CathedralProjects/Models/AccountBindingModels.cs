@@ -52,6 +52,22 @@ namespace CathedralProjects.Models
         [DataType(DataType.Text)]
         [Display(Name = "Имя пользователя")]
         public string Name { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Фамилия пользователя")]
+        public string Surname { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Отчество пользователя")]
+        public string Patronomic { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Индификатор группы пользователя")]
+        public string GroupId { get; set; }
+
+        [DataType(DataType.Url)]
+        [Display(Name = "Репозиторий проектов пользователя")]
+        public string Github { get; set; }
     }
 
     public class RegisterExternalBindingModel

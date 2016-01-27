@@ -10,18 +10,16 @@ namespace CathedralProjects.Models
     {
         [BsonId]
         public Guid ID { get; set; }
-        public Guid StudentId { get; set; }
-        public Guid TeacherId { get; set; }
-        public Guid TopicId { get; set; }
+        public string StudentId { get; set; }
+        public string TeacherId { get; set; }
+        public string TopicId { get; set; }
+        public string Lable { get; set; }
         public string Description { get; set; }
-        public List<Comment> Comments { get; set; }
         public string GitHubRepository { get; set; }
-        public List<Stage> Stages { get; set; }
         public int Assesment { get; set; }
         public int CommanAssesmaent { get; set; }
-        public List<CathedralProjects.Models.Doument> Documents { get; set; }
         public long DateFinally { get; set; }
         public string Type { get; set; }
-        public Guid Subject { get; set; }
+        public string Subject { get; set; }
     }
 }

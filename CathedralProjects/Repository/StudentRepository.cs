@@ -19,15 +19,15 @@ namespace CathedralProjects.Repository
             collection = Database.GetCollection<Student>("student");
         }
 
-        public void AddStudent(Guid id, string name, string surname, 
-            string patronomic, Guid gropId, string email, string GitHub)
+        public void AddStudent(string id, string name, string surname, 
+            string patronomic, string gropId, string email, string GitHub)
         {  
             collection.InsertOneAsync(new Student(id,name,surname, patronomic,gropId,email,GitHub));
         }
 
-        public Student GetStudent(Guid id)
+        public Student GetStudent(string id)
         {
-            var query = Builders<Student>.Filter.Eq("ExternalId", id);
+            var query = Builders<Student>.Filter.Eq("_id", id);
             var result = collection.Find(query);
             if (result.CountAsync().Result > 0)
             {

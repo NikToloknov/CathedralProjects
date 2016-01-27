@@ -10,10 +10,22 @@ namespace CathedralProjects.Models
     {
         [BsonId]
         public Guid ID { get; set; }
-        public Guid Author_id { get; set; }
-        public Guid Project_id { get; set; }
+        public string Author_id { get; set; }
+        public string Project_id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public bool State { get; set; }
         public long Date { get; set; }
+
+        public Stage(string author, string project, string title, string descript, bool state, long data)
+        {
+            ID = Guid.NewGuid();
+            Author_id = author;
+            Project_id = project;
+            Title = title;
+            Description = descript;
+            State = state;
+            Date = data;
+        }
     }
 }

@@ -9,8 +9,13 @@ namespace CathedralProjects.Models
     public class Group
     {
         [BsonId]
-        public Guid ID { get; set; }
+        public string ExternalId { get; set; }
         public string Name { get; set; }
-        public List<Subject> Subjects { get; set; }
+
+        public Group(string id, string name)
+        {
+            ExternalId = id;
+            Name = name;
+        }
     }
 }

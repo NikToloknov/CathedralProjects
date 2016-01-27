@@ -9,7 +9,7 @@ namespace CathedralProjects.Models
     public class Teacher
     {
         [BsonId]
-        public Guid ExternalId { get; set; }
+        public string ExternalId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Patronomic { get; set; }

@@ -338,7 +338,10 @@ namespace CathedralProjects.Controllers
             {
                 return GetErrorResult(result);
             }
+            
             studentRepository = new StudentRepository(new MongoProvider("mongodb://localhost:27017","Student"));
+            studentRepository.AddStudent(user.Id, model.Name, model.Surname, 
+                model.Patronomic, model.GroupId, model.Email, model.Github);
             return Ok();
         }
 
