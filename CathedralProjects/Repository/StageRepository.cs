@@ -39,5 +39,17 @@ namespace CathedralProjects.Repository
                     .CurrentDate("lastModified");
             var result = _collection.UpdateOneAsync(filter, update);
         }
+
+        public List<Stage> GetAllStage(string projectId)
+        {
+            var builder = Builders<Stage>.Filter;
+            var filter = builder.Eq("ProjectId", projectId);
+            var result = _collection.Find(filter);
+            if (result.CountAsync().Result > 0)
+            {
+                return result.ToListAsync().Result.ToList();
+            }
+            return null;
+        }
     }
 }

@@ -20,6 +20,11 @@ namespace CathedralProjects.Controllers
         private readonly TopicRepository _topicRepository =
             new TopicRepository(new MongoProvider("mongodb://localhost:27017", "Student"));
 
+        /// <summary>
+        /// Добавить тему
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
         [System.Web.Http.HttpPost]
         [System.Web.Http.Route("topic/addtopic")]
         public IHttpActionResult AddTopic([FromBody]string search)
@@ -43,7 +48,6 @@ namespace CathedralProjects.Controllers
                 Group = Json.Descendants().OfType<JProperty>().First(p => p.Name == "Group").Value.ToString();
                 Title = Json.Descendants().OfType<JProperty>().First(p => p.Name == "Title").Value.ToString();
                 Description = Json.Descendants().OfType<JProperty>().First(p => p.Name == "Description").Value.ToString();
-                Date = Convert.ToInt64(Json.Descendants().OfType<JProperty>().First(p => p.Name == "Date").Value);
                 SubjectId = Json.Descendants().OfType<JProperty>().First(p => p.Name == "SubjectId").Value.ToString();
             }
             catch (System.InvalidOperationException)
@@ -55,10 +59,15 @@ namespace CathedralProjects.Controllers
                 return Content(HttpStatusCode.NotFound, "from and size it must be non-negative integer");
             }
 
-            _topicRepository.AddTopic(new Topic(TeacherId, Group, Title, Description, Date, SubjectId));
+            _topicRepository.AddTopic(new Topic(TeacherId, Group, Title, Description, DateTime.Now.Ticks, SubjectId));
             return Ok();
         }
 
+        /// <summary>
+        /// Получить все темы для группы
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <returns></returns>
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("topic/gettopics/{groupId}")]
         public IHttpActionResult StageOpen(string groupId)

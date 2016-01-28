@@ -19,6 +19,7 @@ namespace CathedralProjects.Models
         public int Assesment { get; set; }
         public int CommanAssesmaent { get; set; }
         public long DateFinally { get; set; }
+        public long DateJoin { get; set; }
         public string Type { get; set; }
         public string Subject { get; set; }
     }

@@ -26,7 +26,7 @@ namespace CathedralProjects.Repository
             project.ID = Guid.NewGuid();
 
             var collectionTopics = Database.GetCollection<Topic>("topic");
-            var filter = Builders<Topic>.Filter.Eq("id", topicId);
+            var filter = Builders<Topic>.Filter.Eq("_id", topicId);
             var result = collectionTopics.Find(filter);
             if (result.CountAsync().Result > 0)
             {
@@ -35,6 +35,8 @@ namespace CathedralProjects.Repository
                 project.Description = topic.Description;
                 project.Lable = topic.Title;
                 project.Subject = topic.SubjectId;
+                project.TopicId = topic.ID;
+                project.DateJoin = DateTime.Now.Ticks;
             }
             _collection.InsertOneAsync(project);
         }

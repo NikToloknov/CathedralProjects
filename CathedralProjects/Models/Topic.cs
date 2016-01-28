@@ -9,7 +9,7 @@ namespace CathedralProjects.Models
     public class Topic
     {
         [BsonId]
-        public Guid ID { get; set; }
+        public string ID { get; set; }
         public string TeacherId { get; set; }
         public string Group { get; set; }
         public string Title { get; set; }
@@ -19,7 +19,7 @@ namespace CathedralProjects.Models
 
         public Topic(string teach, string group, string title, string desc, long date, string subject)
         {
-            ID = Guid.NewGuid();
+            ID = Guid.NewGuid().ToString();
             TeacherId = teach;
             Group = group;
             Title = title;

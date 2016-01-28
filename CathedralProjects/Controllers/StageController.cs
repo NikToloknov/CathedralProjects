@@ -35,7 +35,6 @@ namespace CathedralProjects.Controllers
             string Title;
             string Description;
             bool State;
-            long Date;
            
             try
             {
@@ -43,7 +42,6 @@ namespace CathedralProjects.Controllers
                 Project_id = Json.Descendants().OfType<JProperty>().First(p => p.Name == "Project_id").Value.ToString();
                 Title = Json.Descendants().OfType<JProperty>().First(p => p.Name == "Title").Value.ToString();
                 Description = Json.Descendants().OfType<JProperty>().First(p => p.Name == "Description").Value.ToString();
-                Date = Convert.ToInt64(Json.Descendants().OfType<JProperty>().First(p => p.Name == "Date").Value);
                 State = Convert.ToBoolean(Json.Descendants().OfType<JProperty>().First(p => p.Name == "Description").Value);
             }
             catch (System.InvalidOperationException)
@@ -55,7 +53,7 @@ namespace CathedralProjects.Controllers
                 return Content(HttpStatusCode.NotFound, "from and size it must be non-negative integer");
             }
 
-            _stageRepository.AddStage(new Stage(Author_id,Project_id,Title,Description,State,Date));
+            _stageRepository.AddStage(new Stage(Author_id,Project_id,Title,Description,State,DateTime.Now.Ticks));
             return Ok();
       }
         [System.Web.Http.HttpGet]
